@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  fetch('http://10.0.0.100:3000')
+  fetch(process.env.REACT_APP_NODE_URL)
     .then(response => response.json())
     .then(data => console.log(data))
   return (
