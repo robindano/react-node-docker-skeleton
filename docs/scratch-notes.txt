@@ -1,0 +1,26 @@
+How do you get an nginx container, proxying requests to a node app in another
+container?
+
+The nginx container should be able to access the node app container via the DNS
+service that docker-compose appears to have.
+
+The problem with that is, both containers will be on the same machine.
+
+You need some way to distinguish between requests meant for the static react
+frontend, and requests for the node.js backend, without really being able to use
+hostnames.
+
+When the containers are running in a dev env, there likely won't be a hostname
+that nginx can use for determining which virtual host should handle the
+requests, unless the client interacting with the app has its hosts file
+configured, which, for the sake of portability, I would like to avoid.
+
+Perhaps we could use two instances of nginx... each configured differently, and
+running on different ports.
+
+The React Frontend could be served via nginx, on port 80.
+The node backend could be served also via nginx, on port 8080.
+Requests to port 8080 would be routed to port 3000 (the node.js app port)
+
+Since it's generally accepted that node.js by itself isn't meant to do all of
+the nice HTTP stuff that nginx does (caching, SSL, etc.)

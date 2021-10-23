@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+    webserver:
+        build: ./app_react
+        ports:
+            - 80:80
+    nodeapp:
+        build: ./app_node
+    db:
+        image: postgres:14
+    nginx:
+        image: nginx:1.21.3
