@@ -4,15 +4,15 @@ services:
         build: 
             context: ./app_react
             args:
-                - REACT_APP_NODE_URL=$APP_NODE_URL
-                - REACT_APP_REACT_URL=$APP_REACT_URL
+                - APP_HOST_URL=$APP_HOST_URL
+                - APP_BACKEND_PORT=$APP_BACKEND_PORT
         ports:
             - 80:80
-            - 8080:8080
+            - ${APP_BACKEND_PORT}:8080
     nodeapp:
         build: ./app_node
         environment:
-            - APP_REACT_URL=$APP_REACT_URL
+            - APP_HOST_URL=$APP_HOST_URL
     db:
         image: postgres:14
     nginx:
