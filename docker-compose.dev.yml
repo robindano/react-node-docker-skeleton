@@ -15,5 +15,14 @@ services:
             - APP_HOST_URL=$APP_HOST_URL
     db:
         image: postgres:14
+        environment:
+            - POSTGRES_USER=$POSTGRES_USER
+            - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+        volumes:
+            - pg_data:/var/lib/postgresql
+        ports:
+            - 5432:5432
     nginx:
         image: nginx:1.21.3
+volumes:
+    pg_data:
