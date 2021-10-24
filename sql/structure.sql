@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS todo_lists (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);

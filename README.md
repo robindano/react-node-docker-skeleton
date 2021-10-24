@@ -30,3 +30,10 @@ built React app, as well as an nginx configuration which will set up a `server
 
 Requests sent to 8080 will be received by nginx, and then proxied to the node
 backend.
+
+# Database Structure / Initialization Scripts
+
+Database structure is defined by `sql/structure.sql`, and seed data by
+`sql/data.sql`. These two files will be copied over to the postgres container
+such that they are read by the database server in a special order as defined by
+`docker-compose.dev.yml`

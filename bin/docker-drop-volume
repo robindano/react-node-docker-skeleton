@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker-compose -f docker-compose.dev.yml down --volumes
+docker volume rm -f node-react-docker-skeleton_pg_data
