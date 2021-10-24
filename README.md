@@ -12,6 +12,9 @@ docker-compose -f ./docker-compose.dev.yml build
 docker-compose -f ./docker-compose.dev.yml up
 ```
 
+In the root directory you should see a file `.env`, which will have a variable `APP_HOST_URL`. 
+This should be the URL of the machine running the app. So, if you're running it on your local machine, you can just specify localhost.
+
 Now if you visit `http://localhost` you should see the app.
 
 # Docker Setup
