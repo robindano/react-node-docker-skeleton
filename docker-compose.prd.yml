@@ -29,7 +29,5 @@ services:
       - ./sql/data.sql:/docker-entrypoint-initdb.d/2-data.sql
     ports:
       - $POSTGRES_PORT:5432
-  # nginx:
-    # image: nginx:1.21.3
 volumes:
   pg_data:

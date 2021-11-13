@@ -1,0 +1,12 @@
+FROM node:14.18.1 AS builder
+
+# set up environment variables
+ARG APP_HOST_URL
+ARG APP_BACKEND_PORT
+ENV REACT_APP_BACKEND_URL "${APP_HOST_URL}:${APP_BACKEND_PORT}"
+ENV REACT_APP_REACT_URL $REACT_APP_REACT_URL
+
+# copy sources files and build
+WORKDIR /app
+COPY . .
+ENTRYPOINT ["npm", "start"]
