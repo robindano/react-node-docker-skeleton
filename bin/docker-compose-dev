@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ./app_node && npm install
+cd ../app_react && npm install
+docker-compose -f ../docker-compose.dev.yml up --build
