@@ -10,8 +10,6 @@ var corsOptions = {
   optionsSuccessStatus: 200
 }
 
-console.log(process.env.APP_FRONTEND_URL)
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
