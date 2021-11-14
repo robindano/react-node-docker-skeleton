@@ -4,4 +4,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 3000
+ARG APP_HOST
+ENV APP_CROSS_ORIGIN_ALLOW $APP_HOST
 CMD [ "npm", "run", "start" ]

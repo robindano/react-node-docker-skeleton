@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var corsOptions = {
-  origin: process.env.APP_FRONTEND_URL,
+  origin: process.env.APP_CROSS_ORIGIN_ALLOW,
   optionsSuccessStatus: 200
 }
 
