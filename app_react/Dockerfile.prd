@@ -17,7 +17,17 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/build .
 
-# copy nginx config to container
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+ARG NGINX_CONF_TEMPLATE
+ENV NGINX_CONF_TEMPLATE $NGINX_CONF_TEMPLATE
+ARG APP_HOST
+ENV APP_HOST $APP_HOST
+ARG APP_HOST_API
+ENV APP_HOST_API $APP_HOST_API
 
+RUN echo "======================================"
+RUN echo "$APP_HOST"
+
+COPY ./nginx/$NGINX_CONF_TEMPLATE /app/default.conf.template
+RUN envsubst \$APP_HOST,\$APP_HOST_API < /app/default.conf.template > /etc/nginx/conf.d/default.conf
+RUN cat /etc/nginx/conf.d/default.conf
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
