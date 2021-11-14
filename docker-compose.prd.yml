@@ -20,7 +20,7 @@ services:
       context: ./app_node
       dockerfile: Dockerfile.prd
     environment:
-      - APP_HOST=$APP_HOST
+      - APP_CROSS_ORIGIN_ALLOW=$APP_HOST
       - POSTGRES_DB=$POSTGRES_DB
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
