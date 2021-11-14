@@ -15,7 +15,6 @@ services:
       - ${APP_BACKEND_PORT}:8080
     volumes: 
       - ./ssl_certs/:/etc/nginx/certs
-      - ./html/:/usr/share/nginx/html
   nodeapp:
     build:
       context: ./app_node
