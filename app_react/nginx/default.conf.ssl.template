@@ -5,8 +5,8 @@ upstream nodeapp {
 server {
     server_name $APP_HOST_API;
 
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen 80;
+    listen [::]:80;
 
     location ^~ /.well-known/acme-challenge {
         default_type text/plain;
