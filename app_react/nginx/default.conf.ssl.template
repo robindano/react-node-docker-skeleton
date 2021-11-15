@@ -25,7 +25,7 @@ server {
     listen 443;
     listen [::]:443;
 
-    ssl_certificate /etc/letsencrypt/live/todo.sysmatix.io/cert.pem;
+    ssl_certificate /etc/letsencrypt/live/todo.sysmatix.io/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/todo.sysmatix.io/privkey.pem;
 
     server_name $APP_HOST;
