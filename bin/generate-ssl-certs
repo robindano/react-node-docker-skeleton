@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "Enter domain name: "
 read DOMAIN_NAME
-certbot certonly --webroot -w ../certbot_webroot -d $DOMAIN_NAME
+certbot certonly --webroot -w ./certbot_webroot -d $DOMAIN_NAME
