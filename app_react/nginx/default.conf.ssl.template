@@ -2,11 +2,6 @@ upstream nodeapp {
     server nodeapp:3000;
 }
 
-location ^~ /.well-known/acme-challenge {
-    default_type text/plain;
-    root /var/www/certbot_webroot;
-}
-
 server {
     listen 80;
     listen [::]:80;
@@ -34,6 +29,11 @@ server {
     location / {
         root /usr/share/nginx/html;
         index index.html index.htm;
+    }
+
+    location ^~ /.well-known/acme-challenge {
+        default_type text/plain;
+        root /var/www/certbot_webroot;
     }
 
     error_page 500 502 503 504  /50x.html;
