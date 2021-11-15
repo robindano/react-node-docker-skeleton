@@ -3,9 +3,28 @@ upstream nodeapp {
 }
 
 server {
-    listen 80;
-    listen [::]:80;
     server_name $APP_HOST_API;
+
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location ^~ /.well-known/acme-challenge {
+        default_type text/plain;
+        root /var/www/certbot_webroot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    server_name $APP_HOST_API;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_certificate /etc/letsencrypt/live/todoapi.sysmatix.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/todoapi.sysmatix.io/privkey.pem;
 
     location / {
         proxy_redirect off;
@@ -22,25 +41,31 @@ server {
 }
 
 server {
+    server_name $APP_HOST;
     listen 80 default_server;
     listen [::]:80 default_server;
-    
+
+    location ^~ /.well-known/acme-challenge {
+        default_type text/plain;
+        root /var/www/certbot_webroot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    server_name $APP_HOST;
     listen 443 ssl;
     listen [::]:443 ssl;
 
     ssl_certificate /etc/letsencrypt/live/todo.sysmatix.io/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/todo.sysmatix.io/privkey.pem;
 
-    server_name $APP_HOST;
-
     location / {
         root /usr/share/nginx/html;
         index index.html index.htm;
-    }
-
-    location ^~ /.well-known/acme-challenge {
-        default_type text/plain;
-        root /var/www/certbot_webroot;
     }
 
     error_page 500 502 503 504  /50x.html;
