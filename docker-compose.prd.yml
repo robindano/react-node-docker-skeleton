@@ -14,7 +14,8 @@ services:
       - 443:443
       - ${APP_BACKEND_PORT}:8080
     volumes: 
-      - ./ssl_certs/:/etc/nginx/certs
+      - ./certbot_webroot/:/var/www/certbot_webroot
+      - /etc/letsencrypt:/etc/letsencrypt
   nodeapp:
     build:
       context: ./app_node

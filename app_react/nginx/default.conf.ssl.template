@@ -2,6 +2,11 @@ upstream nodeapp {
     server nodeapp:3000;
 }
 
+location ^~ /.well-known/acme-challenge {
+    default_type text/plain;
+    root /var/www/certbot_webroot;
+}
+
 server {
     listen 80;
     listen [::]:80;
