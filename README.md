@@ -21,7 +21,7 @@ Now if you visit `http://localhost` you should see the app.
 
 This project has two sub-projects, the node backend, and the react frontend,
 each with a corresponding `Dockerfile`.
-
+ 
 The `app_node` directory contains the node.js portion of the app, and the
 `app_react` portion, when dockerized, will be based on the nginx docker image.
 When building the `app_react` docker image, the Dockerfile will `COPY` over the
